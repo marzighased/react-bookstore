@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import './book.css'
 
-function Book() {
+function Book(props) {
     return (
-        <div>
-            <h3>Test Book</h3>
-            <p>Test Author</p>
-            <p>Price: 15€</p>
+        <div className="book">
+            <h3>{props.title}</h3>
+            <p>Author: {props.author}</p>
+            <p>Price: {props.price} €</p>
             <button>Add to Cart</button>
         </div>
     );
