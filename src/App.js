@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Book from './book';
+import Cart from './cart';
 
 function App() {
   const books = [
@@ -12,6 +13,7 @@ function App() {
   return (
     <div>
       <h1>My Bookstore</h1>
+      <Cart itemCount="0" total="0" />
       <div className='books-container'>
         {books.map(book => (
           <Book 
