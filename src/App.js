@@ -7,11 +7,15 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
 
   const books = [
-    { id: 1, title: "Harry Potter", author: "J.K. Rowling", price: "25" },
-    { id: 2, title: "The Little Prince", author: "Antoine de Saint-Exupéry", price: "18" },
-    { id: 3, title: "1984", author: "George Orwell", price: "22" },
-    { id: 4, title: "To Kill a Mockingbird", author: "Harper Lee", price: "20" }
+    { id: 1, title: "Harry Potter", author: "J.K. Rowling", price: 25 },
+    { id: 2, title: "The Little Prince", author: "Antoine de Saint-Exupéry", price: 18 },
+    { id: 3, title: "1984", author: "George Orwell", price: 22 },
+    { id: 4, title: "To Kill a Mockingbird", author: "Harper Lee", price: 20 }
   ];
+
+  const addToCart = (book) => {
+    setCartItems([...cartItems, book]);
+  };
 
   const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
 
@@ -26,6 +30,7 @@ function App() {
             title={book.title} 
             author={book.author} 
             price={book.price} 
+            onAddToCart={() => addToCart(book)}
           />
         ))}
       </div>

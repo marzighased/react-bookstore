@@ -7,7 +7,7 @@ function Book(props) {
             <h3>{props.title}</h3>
             <p>Author: {props.author}</p>
             <p>Price: {props.price} €</p>
-            <button>Add to Cart</button>
+            <button onClick={props.onAddToCart}>Add to Cart</button>
         </div>
     );
 }
