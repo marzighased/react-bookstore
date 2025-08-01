@@ -7,10 +7,10 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
 
   const books = [
-    { id: 1, title: "Harry Potter", author: "J.K. Rowling", price: 25 },
-    { id: 2, title: "The Little Prince", author: "Antoine de Saint-Exupéry", price: 18 },
-    { id: 3, title: "1984", author: "George Orwell", price: 22 },
-    { id: 4, title: "To Kill a Mockingbird", author: "Harper Lee", price: 20 }
+    { id: 1, title: "Harry Potter", author: "J.K. Rowling", price: 25, image: "https://images-na.ssl-images-amazon.com/images/P/0439708184.01.L.jpg" },
+    { id: 2, title: "The Little Prince", author: "Antoine de Saint-Exupéry", price: 18, image: "https://images-na.ssl-images-amazon.com/images/P/0156012197.01.L.jpg" },
+    { id: 3, title: "1984", author: "George Orwell", price: 22, image: "https://images-na.ssl-images-amazon.com/images/P/0452284236.01.L.jpg" },
+    { id: 4, title: "To Kill a Mockingbird", author: "Harper Lee", price: 20, image: "https://images-na.ssl-images-amazon.com/images/P/0061120081.01.L.jpg" }
   ];
 
   const addToCart = (book) => {
@@ -30,6 +30,7 @@ function App() {
             title={book.title} 
             author={book.author} 
             price={book.price} 
+            image={book.image}
             onAddToCart={() => addToCart(book)}
           />
         ))}
