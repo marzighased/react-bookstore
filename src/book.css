@@ -59,3 +59,14 @@
   margin-bottom: 10px;
   border-radius: 5px;
 }
+
+.cart-items {
+  margin: 15px 0;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}

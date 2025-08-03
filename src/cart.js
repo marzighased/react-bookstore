@@ -5,6 +5,19 @@ function Cart(props) {
         <div className="cart">
             <h2>Shopping Cart</h2>
             <p>Items in cart: {props.itemCount}</p>
+
+            {props.cartItems.length > 0 ? (
+                <div className="cart-items">
+                {props.cartItems.map((item, index) => (
+                    <div key={index} className="cart-item">
+                    <span>{item.title}</span>
+                    <span>€{item.price}</span>
+                    </div>
+                ))}
+                </div>
+            ) : (
+                <p>Cart is empty</p>
+            )}
             <p>Total: €{props.total}</p>
         </div>
     );

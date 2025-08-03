@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="app">  
       <h1>My Bookstore</h1>
-      <Cart itemCount={cartItems.length} total={totalPrice} />
+      <Cart itemCount={cartItems.length} total={totalPrice} cartItems={cartItems} />
       <div className='books-container'>
         {books.map(book => (
           <Book 
