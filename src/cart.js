@@ -12,6 +12,9 @@ function Cart(props) {
                     <div key={index} className="cart-item">
                     <span>{item.title}</span>
                     <span>€{item.price}</span>
+                    <button 
+                        className="remove-btn"
+                        onClick={() => props.onRemoveFromCart(index)}>❌</button>
                     </div>
                 ))}
                 </div>

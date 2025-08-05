@@ -17,12 +17,16 @@ function App() {
     setCartItems([...cartItems, book]);
   };
 
+  const removeFromCart = (indexToRemove) => {
+    setCartItems(cartItems.filter((item, index) => index !== indexToRemove));
+  };
+
   const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
 
   return (
     <div className="app">  
       <h1>My Bookstore</h1>
-      <Cart itemCount={cartItems.length} total={totalPrice} cartItems={cartItems} />
+      <Cart itemCount={cartItems.length} total={totalPrice} cartItems={cartItems} onRemoveFromCart={removeFromCart} />
       <div className='books-container'>
         {books.map(book => (
           <Book 
