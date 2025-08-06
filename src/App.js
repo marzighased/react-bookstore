@@ -14,7 +14,17 @@ function App() {
   ];
 
   const addToCart = (book) => {
-    setCartItems([...cartItems, book]);
+    const existingItem = cartItems.find(item => item.id === book.id);
+    
+    if (existingItem) {
+      setCartItems(cartItems.map(item => 
+        item.id === book.id 
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      ));
+    } else {
+      setCartItems([...cartItems, { ...book, quantity: 1 }]);
+    }
   };
 
   const removeFromCart = (indexToRemove) => {
