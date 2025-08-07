@@ -82,3 +82,40 @@
 .remove-btn:hover {
   transform: scale(1.2);
 }
+
+.quantity-badge {
+  color: #007bff;
+  font-size: 0.8em;
+  margin-left: 5px;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.qty-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.qty-btn:hover {
+  background-color: #0056b3;
+}
+
+.qty-display {
+  font-size: 18px;
+  font-weight: bold;
+  min-width: 30px;
+  text-align: center;
+}

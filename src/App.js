@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import Book from './book';
-import Cart from './cart';
+import Book from './book';  
+import Cart from './cart';  
 
 function App() {
-
   const [cartItems, setCartItems] = useState([]);
 
   const books = [
@@ -18,36 +17,62 @@ function App() {
     
     if (existingItem) {
       setCartItems(cartItems.map(item => 
-        item.id === book.id 
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
+        item.id === book.id ? { ...item, quantity: item.quantity + 1 } : item
       ));
     } else {
       setCartItems([...cartItems, { ...book, quantity: 1 }]);
     }
   };
 
-  const removeFromCart = (indexToRemove) => {
-    setCartItems(cartItems.filter((item, index) => index !== indexToRemove));
+  const removeFromCart = (bookId) => {
+    setCartItems(cartItems.filter(item => item.id !== bookId));
   };
 
-  const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
+  const decreaseQuantity = (bookId) => {
+    setCartItems(cartItems.map(item => {
+      if (item.id === bookId) {
+        if (item.quantity === 1) {
+          return null; 
+        }
+        return { ...item, quantity: item.quantity - 1 };
+      }
+      return item;
+    }).filter(item => item !== null));
+  };
+
+  const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const totalPrice = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
   return (
-    <div className="app">  
+    <div className="app">
       <h1>My Bookstore</h1>
-      <Cart itemCount={cartItems.length} total={totalPrice} cartItems={cartItems} onRemoveFromCart={removeFromCart} />
+      <Cart 
+        itemCount={totalItems}
+        total={totalPrice} 
+        cartItems={cartItems}
+        onRemoveFromCart={removeFromCart}
+        onDecreaseQuantity={decreaseQuantity}
+        onIncreaseQuantity={addToCart}
+      />
       <div className='books-container'>
-        {books.map(book => (
-          <Book 
-            key={book.id}
-            title={book.title} 
-            author={book.author} 
-            price={book.price} 
-            image={book.image}
-            onAddToCart={() => addToCart(book)}
-          />
-        ))}
+        {books.map(book => {
+          const cartItem = cartItems.find(item => item.id === book.id);
+          const quantityInCart = cartItem ? cartItem.quantity : 0;
+
+          return (
+            <Book 
+              key={book.id}
+              title={book.title} 
+              author={book.author} 
+              price={book.price} 
+              image={book.image}
+              quantityInCart={quantityInCart}
+              onAddToCart={() => addToCart(book)}
+              onIncrease={() => addToCart(book)}
+              onDecrease={() => decreaseQuantity(book.id)}
+            />
+          );
+        })}
       </div>
     </div>
   );
